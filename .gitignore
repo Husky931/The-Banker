@@ -1,0 +1,19 @@
+# Ignore everything by default
+*
+
+# Track these specific files
+!AGENTS.md
+!BOOTSTRAP.md
+!HEARTBEAT.md
+!IDENTITY.md
+!MEMORY.md
+!SOUL.md
+!TOOLS.md
+!USER.md
+
+# Track the memory directory and its contents
+!memory/
+!memory/**
+
+# Track .gitignore itself
+!.gitignore
