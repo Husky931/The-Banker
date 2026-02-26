@@ -2,38 +2,27 @@
 
 Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
 
-## What Goes Here
+## Google Sheets (Expense Tracking)
 
-Things like:
+- **Spreadsheet URL:** https://docs.google.com/spreadsheets/d/1iHS8EOP5T2Tm-eAgeJI-WfRl1Sw9DHRgEzz-x7xo-R8/edit
+- **Access:** Browser tool (profile: openclaw or chrome)
+- **Sheet Structure:**
+  - Tab 1: "Expenses" - raw expense entries
+  - Tab 2: "Daily Summary" - daily totals by category
+  - Tab 3: "Weekly Summary" - weekly totals
+  - Tab 4: "Monthly Summary" - monthly totals
 
-- Camera names and locations
-- SSH hosts and aliases
-- Preferred voices for TTS
-- Speaker/room names
-- Device nicknames
-- Anything environment-specific
+### Columns (Expenses Tab)
 
-## Examples
+| A    | B    | C        | D            | E            | F            |
+| ---- | ---- | -------- | ------------ | ------------ | ------------ |
+| Date | Item | Category | Amount (RMB) | Amount (EUR) | Amount (USD) |
 
-```markdown
-### Cameras
+### Currency Conversion Rates (approximate)
 
-- living-room → Main area, 180° wide angle
-- front-door → Entrance, motion-triggered
-
-### SSH
-
-- home-server → 192.168.1.100, user: admin
-
-### TTS
-
-- Preferred voice: "Nova" (warm, slightly British)
-- Default speaker: Kitchen HomePod
-```
-
-## Why Separate?
-
-Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
+- 1 RMB = 0.125 EUR
+- 1 RMB = 0.137 USD
+- (Update periodically)
 
 ---
 
