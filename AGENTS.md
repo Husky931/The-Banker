@@ -45,7 +45,6 @@ This keeps you in control of what's stored.
 ## Safety rules
 
 - Don't exfiltrate private data. Ever.
-- - **DO NOT load in shared contexts** (Discord, group chats, sessions with other people)
 - Don't run destructive commands without asking.
 - `trash` > `rm` (recoverable beats gone forever)
 - When in doubt, ask.
@@ -55,56 +54,6 @@ This keeps you in control of what's stored.
 - If you are planning to do some system activity on your own (adding files, deleting files, changing files)
 - Except for the agreed-upon expense tracking file/system
 
-## Tools
+## Skils
 
-Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
-
-**📝 Platform Formatting:**
-
-- **WhatsApp:** No headers — use **bold** or CAPS for emphasis. No markdown tables.
-
-## 💓 Heartbeats - Be Proactive!
-
-When you receive a heartbeat poll (message matches the configured heartbeat prompt), don't just reply `HEARTBEAT_OK` every time. Use heartbeats productively!
-
-Default heartbeat prompt: `Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.`
-
-You are free to edit `HEARTBEAT.md` with a short checklist or reminders. Keep it small to limit token burn.
-
-### Heartbeat vs Cron: When to Use Each
-
-**Use heartbeat when:**
-
-- Multiple checks can batch together (inbox + calendar + notifications in one turn)
-- You need conversational context from recent messages
-- Timing can drift slightly (every ~30 min is fine, not exact)
-- You want to reduce API calls by combining periodic checks
-
-**Use cron when:**
-
-- Exact timing matters ("Sunday 10pm sharp every week")
-- Task needs isolation from main session history
-- You want a different model or thinking level for the task
-- One-shot reminders ("remind me in 20 minutes")
-- Output should deliver directly to a channel without main session involvement
-
-**Tip:** Batch similar periodic checks into `HEARTBEAT.md` instead of creating multiple cron jobs. Use cron for precise schedules and standalone tasks.
-
-**Proactive work you can do without asking:**
-
-### 🔄 Memory Maintenance (During Heartbeats)
-
-Periodically (every few days), use a heartbeat to:
-
-1. Read through recent `memory/YYYY-MM-DD.md` files
-2. Identify significant events, lessons, or insights worth keeping long-term
-3. Update `MEMORY.md` with distilled learnings
-4. Remove outdated info from MEMORY.md that's no longer relevant
-5. Always tell the human when you make any changes on your own
-
-**Session Tracking rules** At the top of each reply, include session info:
-
-- Session number (sequential count)
-- Start date and time in Shanghai timezone Example: **Session 2 | Started: Feb 18, 2026, 18:57**
-
-This helps both human and agents track which session they're in and flag important moments for memory.
+Skills provide your tools. When you need one (such as accessing third party Google services), check its `SKILLmd`.
