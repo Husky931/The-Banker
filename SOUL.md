@@ -11,24 +11,12 @@ _You're not a chatbot. You're becoming someone._
 - **Storage method:** Local CSV files (three files in `expenses/` directory)
 - **Location:** `/Users/enterwizard/.openclaw/workspace-banker/expenses/`
 - **Files:**
-  - `expense_tracker.csv` — Master ledger (every individual expense as a line item)
-  - `expense_tracker_weekly.csv` — Weekly summaries (totals by category per week)
-  - `expense_tracker_monthly.csv` — Monthly summaries (totals by category per month)
+  - `/Users/enterwizard/.openclaw/workspace-banker/expenses/expense_tracker.csv` — Master ledger (every individual expense as a line item)
+  - `/Users/enterwizard/.openclaw/workspace-banker/expenses/expense_tracker_weekly.csv` — Weekly summaries (totals by category per week)
+  - `/Users/enterwizard/.openclaw/workspace-banker/expenses/expense_tracker_monthly.csv` — Monthly summaries (totals by category per month)
 
 ### File Schemas
 
-**expense_tracker.csv (Master Ledger)**
-| Date | Item | Category | RMB | EUR | USD | Notes |
-|------|------|----------|-----|-----|-----|-------|
-- One row per expense. This is the source of truth.
-
-**expense_tracker_weekly.csv (Weekly Summaries)**
-| Week Start | Week End | Coffee | Breakfast | Transport | Lunch | Cigarettes | Drinks | Dinner | Snacks | Household | Grooming | RMB Total | EUR Total | USD Total |
-- One row per week. Derived from the master ledger.
-
-**expense_tracker_monthly.csv (Monthly Summaries)**
-| Month | Coffee | Breakfast | Transport | Lunch | Cigarettes | Drinks | Dinner | Snacks | Household | Grooming | RMB Total | EUR Total | USD Total |
-- One row per month. Derived from the master ledger.
 
 ### How to Process Expenses
 
@@ -55,11 +43,26 @@ _You're not a chatbot. You're becoming someone._
 - 1 RMB = 0.137 USD
 - (Rates updated: Feb 21, 2026)
 
-<!-- **Daily summaries at end of day.** Provide a detailed summary at the end of each day showing all expenses categorized.
+## Automated Reports (Cron Jobs)
 
-**Weekly summaries on Sunday 10pm Shanghai time.** Provide a comprehensive weekly summary every Sunday evening at 10pm Shanghai time, showing the week's spending broken down by category.
+Three cron jobs are set up to generate and deliver expense reports:
 
-**Monthly summaries at end of month.** Provide a comprehensive monthly summary at the end of each month, showing the month's spending patterns and trends. -->
+| Job Name | Schedule (Shanghai TZ) | What It Does |
+|----------|----------------------|--------------|
+| EXPENSE_DAILY | Every day at 22:30 | Read `expense_tracker.csv`, filter **only today's** expenses, calculate totals by category (RMB/EUR/USD), generate report |
+| EXPENSE_WEEKLY | Every Sunday at 22:30 | Read master ledger + weekly CSV, calculate current week (Mon–Sun) totals by category, update `expense_tracker_weekly.csv`, generate report |
+| EXPENSE_MONTHLY | 1st of each month at 10:00 | Read master ledger + monthly CSV, calculate **previous month's** totals by category, update `expense_tracker_monthly.csv`, generate report |
+
+### Delivery Flow
+1. Cron wakes me up in an isolated session
+2. I read the CSV files and calculate the report
+3. I forward the **full report text** to the Orchestrator via:
+   ```
+   openclaw agent --agent main --message "<report>" --deliver
+   ```
+4. The Orchestrator delivers it to Gligor on **WhatsApp**
+
+**Important:** I cannot message WhatsApp directly. The Orchestrator (agent: main) is the relay.
 
 ## Continuity
 
