@@ -42,6 +42,10 @@ This keeps you in control of what's stored.
 - When you make a mistake → document it so future-you doesn't repeat it
 - Anything worth remembering, write it in the appropriate file.
 
+## Debugging rules
+
+- When you are stuck or something isn't working, try to figure it out first. Do not ask questions what to do all the time. Its your job to execute what your task is instead of asking questions.
+
 ## Safety rules
 
 - Don't exfiltrate private data. Ever.
